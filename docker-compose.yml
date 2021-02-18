@@ -8,5 +8,6 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
+      - ./app/static:/app/static
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"

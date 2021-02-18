@@ -4,31 +4,30 @@ from urllib.parse import urlencode, quote_plus
 import requests
 import json
 from http import HTTPStatus
+import datetime
 
 
 directions = ['North', 'East', 'South', 'West']
 class Weather(object):
-    def __init__(self, name, temperature, min_temp, map_temp, humidity, pressure, wind_speed, direction, description):
+    def __init__(self, name, temperature, min_temp, max_temp, humidity, pressure, wind_speed, direction, description, timezone):
         self.name = name
         self.temperature = temperature
         self.min_temp = min_temp
-        self.map_temp = map_temp
+        self.max_temp = max_temp
         self.humidity = humidity
         self.pressure = pressure
         self.wind_speed = wind_speed
-        self.direction = direction
         self.description = description
         ix = round( direction / (360. / 4) )
         self.direction = directions[ix % 4]
+        self.time = datetime.datetime.fromtimestamp(timezone).strftime('%H:%I %p %d %b %Y')
 
 
 class WeatherService(ABC):
     def __init__(self, url, **params):
         if self.__class__ == WeatherService:
             raise Exception( 'Can not instantiate Abstract class' )
-
-        self.url = url
-        self.params = params
+        self.api_url = url + '?' + urlencode( params )
 
     @abstractmethod
     def get_data(self):
@@ -40,10 +39,8 @@ class WeatherService(ABC):
 
 class OpenWeatherService(WeatherService):
     def get_data(self):
-        API_URL = self.url + '?' + urlencode(self.params)
-        print (API_URL)
         try:
-            response = requests.get(API_URL)
+            response = requests.get(self.api_url)
             if response.status_code == HTTPStatus.OK:
                 weather_object = self.decoder_hook( json.loads(response.content) )
                 return weather_object
@@ -57,10 +54,11 @@ class OpenWeatherService(WeatherService):
             name=data['name'],
             temperature=data['main']['temp'],
             min_temp=data['main']['temp_min'],
-            map_temp=data['main']['temp_max'],
+            max_temp=data['main']['temp_max'],
             humidity=data['main']['humidity'],
             pressure=data['main']['pressure'],
             wind_speed=data['wind']['speed'],
             direction=data['wind']['speed'],
-            description=data['weather'][0]['main']
+            description=data['weather'][0]['main'],
+            timezone=data['dt'] + data['timezone']
         )

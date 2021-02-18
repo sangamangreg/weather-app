@@ -1,0 +1,47 @@
+body {
+    color: #fff;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #CFD8DC;
+    background-repeat: no-repeat
+}
+
+h1{
+    color: var(--warning, yellow);
+}
+
+.card {
+    background-image: url("/static/images/snow.jpg");
+    background-size: cover;
+    width: 600px;
+    height: 350px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 4px #9E9E9E;
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+.xl-sm-font {
+    font-size: 14px
+}
+
+.sm-font {
+    font-size: 18px
+}
+
+.med-font {
+    font-size: 28px
+}
+
+.large-font {
+    font-size: 60px
+}
+
+span {
+    color: var(--warning, yellow);
+    margin: 5px;
+}
+
+.fa-wind {
+  color: var(--warning, yellow);
+}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <link href="{% static 'css/weather.css' %}" rel='stylesheet' type='text/css'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+
+
+
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container-fluid px-1 px-md-4 py-5 mx-auto">
+        <div class="row d-flex justify-content-center px-3">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </div>
+
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script src="https://kit.fontawesome.com/0832a5781e.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

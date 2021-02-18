@@ -1,13 +1,19 @@
-{% load i18n %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weather App</title>
-</head>
-<body>
-    <h1>{% trans 'Weather' %}</h1>
+{% block content %}
+        <div class="card">
+            <h2 class="ml-auto mr-4 mt-3 mb-0">{{ weather_object.name }}</h2>
+            <p class="ml-auto mr-4 mb-0 med-font">{{ weather_object.description | title }}</p>
+            <h1 class="ml-auto mr-4 large-font">{{ weather_object.temperature }}&#176;C</h1>
 
-</body>
-</html>
+            <h5 class="ml-auto mr-4 xl-sm-font"><span>Max:</span>{{ weather_object.max_temp }}&#176;C</h5>
+            <h5 class="ml-auto mr-4 xl-sm-font"><span>Min:</span>{{ weather_object.min_temp }}&#176;C</h5>
+
+            <h5 class="ml-auto mr-4 xl-sm-font"><span>Humidity:</span>{{ weather_object.humidity }}&nbsp;%</h5>
+            <h5 class="ml-auto mr-4 xl-sm-font"><span>Pressure:</span>{{ weather_object.pressure }}&nbsp;hPa</h5>
+
+            <p class="mb-0 ml-4 mt-auto sm-font"> <i class="fas fa-wind"></i>
+                 {{weather_object.wind_speed}} {{ weather_object.direction }} </p>
+            <p class="med-font ml-4 mb-4">{{ weather_object.time }}</p>
+        </div>
+{% endblock %}

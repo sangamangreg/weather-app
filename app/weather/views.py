@@ -9,7 +9,10 @@ import json
 
 
 def index(request):
-    weather_service = OpenWeatherService(settings.CHEMONDIS_OPENWEATHER_URL, id='1275339', appid=settings.CHEMONDIS_OPENWEATHER_KEY)
+    weather_service = OpenWeatherService(settings.CHEMONDIS_OPENWEATHER_URL, id=6619347, appid=settings.CHEMONDIS_OPENWEATHER_KEY, units="metric")
     weather_object = weather_service.get_data()
-    print (weather_object.direction)
-    return render(request, 'weather/index.html')
+
+    args = {
+        "weather_object": weather_object
+    }
+    return render(request, 'weather/index.html', args)
