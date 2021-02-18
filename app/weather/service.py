@@ -5,6 +5,10 @@ import requests
 import json
 from http import HTTPStatus
 import datetime
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 directions = ['North', 'East', 'South', 'West']
@@ -39,14 +43,18 @@ class WeatherService(ABC):
 
 class OpenWeatherService(WeatherService):
     def get_data(self):
+        logger.info("information to fetch weather infomration for city")
         try:
             response = requests.get(self.api_url)
+            logger.info( "Information collected successfully" )
             if response.status_code == HTTPStatus.OK:
                 weather_object = self.decoder_hook( json.loads(response.content) )
                 return weather_object
             else:
+                logger.warn( "Couldn't fetch the information" )
                 raise Exception("TODO:: Exception Handling")
         except:
+            logger.warn( "Exception occurred while fetching data from openweather api" )
             raise RuntimeError("TODO:: Exception Handling")
 
     def decoder_hook(self, data):

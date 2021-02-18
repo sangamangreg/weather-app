@@ -3,9 +3,6 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from weather.service import OpenWeatherService
 from django.conf import settings
-import requests
-import json
-
 
 
 def index(request):
