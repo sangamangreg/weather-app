@@ -1,5 +1,7 @@
 # Weather App
 
-
-
-docker build --build-arg CHEMONDIS_OPENWEATHER_KEY=${CHEMONDIS_OPENWEATHER_KEY} CHEMONDIS_SECRET_KEY=${CHEMONDIS_SECRET_KEY} 
+### Pending tasks so far
+- Dynamic city loading - city dropdown
+- Test case setup
+- loading secret key from env (docker setup)
+- Caching 
