@@ -3,6 +3,7 @@
 
 {% block content %}
         {% if weather_object %}
+        <a href="javascript:history.go(-1)">Back</a>
         <div class="card snow">
             <h2 class="ml-auto mr-4 mt-3 mb-0">{{ weather_object.name }}</h2>
             <p class="ml-auto mr-4 mb-0 med-font">{{ weather_object.description | title }}</p>

@@ -124,4 +124,4 @@ CHEMONDIS_OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 CHEMONDIS_WEATHER_KEY = os.getenv("CHEMONDIS_WEATHER_KEY")
 
-
+CACHE_DURATION_IN_MINUTES = 5
