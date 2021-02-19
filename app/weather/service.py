@@ -1,12 +1,14 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from abc import ABC, abstractmethod
-from urllib.parse import urlencode, quote_plus
+from urllib.parse import urlencode
 import requests
 import json
 from http import HTTPStatus
-import datetime
 import logging
+import requests_cache
+
+requests_cache.install_cache('open_api_cache', expire_after=60*5)
 
 
 logger = logging.getLogger( __name__ )

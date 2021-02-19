@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-19 17:34+0530\n"
+"POT-Creation-Date: 2021-02-19 20:33+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,50 +30,77 @@ msgstr "Deutsche"
 msgid "Spanish"
 msgstr "Norden"
 
-#: app/weather/service.py:14
-msgid "North"
-msgstr ""
+#: app/weather/forms.py:9
+msgid "Enter city"
+msgstr "Stadt betreten"
 
-#: app/weather/service.py:14
+#: app/weather/service.py:16
+msgid "North"
+msgstr "Norden"
+
+#: app/weather/service.py:16
 msgid "East"
 msgstr "Osten"
 
-#: app/weather/service.py:14
+#: app/weather/service.py:16
 msgid "South"
 msgstr "Süd"
 
-#: app/weather/service.py:14
+#: app/weather/service.py:16
 msgid "West"
 msgstr "Westen"
 
+#: app/weather/templates/weather/climate-city.html:11
 #: app/weather/templates/weather/index.html:11
 msgid "Maximum Temperature"
 msgstr "Maximale Temperatur"
 
+#: app/weather/templates/weather/climate-city.html:11
+#: app/weather/templates/weather/climate-city.html:12
 #: app/weather/templates/weather/index.html:11
 #: app/weather/templates/weather/index.html:12
 msgid "C"
 msgstr "C."
 
+#: app/weather/templates/weather/climate-city.html:12
 #: app/weather/templates/weather/index.html:12
 msgid "Minimum Temperature"
 msgstr "Mindesttemperatur"
 
-#: app/weather/templates/weather/index.html:14
+#: app/weather/templates/weather/climate-city.html:16
+#: app/weather/templates/weather/index.html:16
 msgid "Humidity"
 msgstr "Feuchtigkeit"
 
-#: app/weather/templates/weather/index.html:15
+#: app/weather/templates/weather/climate-city.html:17
+#: app/weather/templates/weather/index.html:17
 msgid "Pressure"
 msgstr "Druck"
 
-#: app/weather/templates/weather/index.html:15
+#: app/weather/templates/weather/climate-city.html:17
+#: app/weather/templates/weather/index.html:17
 msgid "hPa"
 msgstr "hPa"
 
-#: app/weather/templates/weather/index.html:26
+#: app/weather/templates/weather/climate.html:16
+#: app/weather/templates/weather/index.html:24
 msgid "Check"
 msgstr "Prüfen"
+
+#: app/weather/views.py:23 app/weather/views.py:29 app/weather/views.py:62
+#: app/weather/views.py:71
+msgid "Please enter valid city name"
+msgstr "Bitte geben Sie einen gültigen Städtenamen ein"
+
+#: app/weather/views.py:25 app/weather/views.py:65
+msgid "System id down. Try in some time"
+msgstr "System-ID ausgefallen. Versuchen Sie es in einiger Zeit"
+
+#: app/weather/views.py:27 app/weather/views.py:68
+msgid "Server taking too much time to respond. Try in some time"
+msgstr ""
+"Der Server benötigt zu viel Zeit, um zu antworten. Versuchen Sie es in "
+"einiger Zeit"
 
 #~ msgid "Max"
 #~ msgstr "Max"

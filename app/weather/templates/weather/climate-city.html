@@ -17,11 +17,4 @@
             <p class="xl-sm-font ml-4 mb-2"><span>{% trans "Pressure" %}:</span>{{ weather_object.pressure }}&nbsp;{% trans 'hPa' %}</p>
         </div>
         {% endif %}
-        <div class="center_div">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <input class="btn btn-primary" type="submit" value="{% trans 'Check' %}" >
-            </form>
-        </div>
 {% endblock %}

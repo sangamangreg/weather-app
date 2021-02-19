@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+        <div class="center_div">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="alert alert-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn btn-primary" type="submit" value="{% trans 'Check' %}" >
+            </form>
+        </div>
+
+{% endblock %}
