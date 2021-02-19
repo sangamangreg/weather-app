@@ -11,7 +11,6 @@ h1{
 }
 
 .card {
-    background-image: url("/static/images/snow.jpg");
     background-size: cover;
     width: 600px;
     height: 350px;
@@ -19,6 +18,34 @@ h1{
     box-shadow: 0px 8px 16px 4px #9E9E9E;
     margin-top: 50px;
     margin-bottom: 50px
+}
+
+.center_div{
+    margin: 0 auto;
+    width:80%;
+    text-align: center;
+}
+
+.form-control {
+    margin: auto;
+    width: 30%;
+    display:inline;
+}
+
+.snow {
+    background-image: url("/static/images/snow.jpg");
+}
+
+ul.errorlist > li {
+    list-style:none;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
 }
 
 .xl-sm-font {

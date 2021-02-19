@@ -7,13 +7,16 @@ from http import HTTPStatus
 import datetime
 import logging
 
+from requests import HTTPError
 
-logger = logging.getLogger(__name__)
-
+logger = logging.getLogger( __name__ )
 
 directions = ['North', 'East', 'South', 'West']
-class Weather(object):
-    def __init__(self, name, temperature, min_temp, max_temp, humidity, pressure, wind_speed, direction, description, timezone):
+
+
+class Weather( object ):
+    def __init__(self, name, temperature, min_temp, max_temp, humidity, pressure, wind_speed, direction, description,
+                 timezone):
         self.name = name
         self.temperature = temperature
         self.min_temp = min_temp
@@ -24,10 +27,10 @@ class Weather(object):
         self.description = description
         ix = round( direction / (360. / 4) )
         self.direction = directions[ix % 4]
-        self.time = datetime.datetime.fromtimestamp(timezone).strftime('%H:%I %p %d %b %Y')
+        self.time = datetime.datetime.fromtimestamp( timezone ).strftime( '%H:%M %p %d %b %Y' )
 
 
-class WeatherService(ABC):
+class WeatherService( ABC ):
     def __init__(self, url, **params):
         if self.__class__ == WeatherService:
             raise Exception( 'Can not instantiate Abstract class' )
@@ -41,21 +44,30 @@ class WeatherService(ABC):
     def decoder_hook(self, data):
         pass
 
-class OpenWeatherService(WeatherService):
+
+class OpenWeatherService( WeatherService ):
     def get_data(self):
-        logger.info("information to fetch weather infomration for city")
+        logger.info( "information to fetch weather infomration for city" )
         try:
-            response = requests.get(self.api_url)
+            response = requests.get( self.api_url, timeout=3 )
             logger.info( "Information collected successfully" )
             if response.status_code == HTTPStatus.OK:
-                weather_object = self.decoder_hook( json.loads(response.content) )
+                weather_object = self.decoder_hook( json.loads( response.content ) )
                 return weather_object
             else:
-                logger.warn( "Couldn't fetch the information" )
-                raise Exception("TODO:: Exception Handling")
-        except:
-            logger.warn( "Exception occurred while fetching data from openweather api" )
-            raise RuntimeError("TODO:: Exception Handling")
+                response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            logger.warning( "HTTP error while fetching data " + str(e) )
+            raise
+        except requests.exceptions.ConnectionError as e:
+            logger.warning( "Error Connecting to openwaather " + str(e) )
+            raise
+        except requests.exceptions.Timeout as e:
+            logger.warning( "Timeout Error. Openweather did not respond well in time" + str(e) )
+            raise
+        except requests.exceptions.RequestException as e:
+            logger.warning( "Something went wrong while fetching information from openweatherapi " + str(e) )
+            raise
 
     def decoder_hook(self, data):
         return Weather(

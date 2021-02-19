@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <div class="card">
+        {% if weather_object %}
+        <div class="card snow">
             <h2 class="ml-auto mr-4 mt-3 mb-0">{{ weather_object.name }}</h2>
             <p class="ml-auto mr-4 mb-0 med-font">{{ weather_object.description | title }}</p>
             <h1 class="ml-auto mr-4 large-font">{{ weather_object.temperature }}&#176;C</h1>
@@ -16,4 +17,13 @@
                  {{weather_object.wind_speed}} {{ weather_object.direction }} </p>
             <p class="med-font ml-4 mb-4">{{ weather_object.time }}</p>
         </div>
+        {% endif %}
+        <div class="center_div">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn btn-primary" type="submit" value="Check" >
+            </form>
+        </div>
+
 {% endblock %}
