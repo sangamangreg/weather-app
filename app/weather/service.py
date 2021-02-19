@@ -53,10 +53,11 @@ class OpenWeatherService( WeatherService ): # retry mechanism
     def get_data(self):
         logger.info( "Information to fetch weather infomration for city" )
         try:
-            response = requests.get( self.api_url, timeout=3 )
+            response = requests.get( self.api_url, timeout=5 )
             logger.info( "Information collected successfully" )
             if response.status_code == HTTPStatus.OK:
                 weather_object = self.decoder_hook( json.loads( response.content ) )
+                # logger.warning(str(weather_object))
                 return weather_object
             else:
                 response.raise_for_status()
