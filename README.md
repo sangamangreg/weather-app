@@ -13,4 +13,6 @@ Design an application where use is able to check weather condition for any given
 - Docker
 
 ## Installation Guide
-- 
+- Create a .env file and add two lines in it
+  -  SECRET_KEY={value}
+  -  WEATHER_KEY={value}

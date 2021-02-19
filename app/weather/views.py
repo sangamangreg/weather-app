@@ -21,8 +21,8 @@ def index(request):
         if form.is_valid():
             logger.info( "process started to fetch data" )
             language = get_language_from_request( request )
-            weather_service = OpenWeatherService( settings.CHEMONDIS_OPENWEATHER_URL, q=form.cleaned_data['city'],
-                                                  appid=settings.CHEMONDIS_WEATHER_KEY, units="metric", lang=language )
+            weather_service = OpenWeatherService( settings.OPENWEATHER_URL, q=form.cleaned_data['city'],
+                                                  appid=settings.WEATHER_KEY, units="metric", lang=language )
             try:
                 weather_object = weather_service.get_data()
                 logger.info( "weather information found" )
@@ -62,8 +62,8 @@ def climate(request):
 def climate_for_city(request, city):
     weather_object = None
     language = get_language_from_request( request )
-    weather_service = OpenWeatherService( settings.CHEMONDIS_OPENWEATHER_URL, q=city,
-                                          appid=settings.CHEMONDIS_WEATHER_KEY, units="metric", lang=language )
+    weather_service = OpenWeatherService( settings.OPENWEATHER_URL, q=city,
+                                          appid=settings.WEATHER_KEY, units="metric", lang=language )
     try:
         weather_object = weather_service.get_data()
     except requests.exceptions.HTTPError as e:

@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.getenv("CHEMONDIS_SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = False
 
@@ -120,8 +120,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-CHEMONDIS_OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-CHEMONDIS_WEATHER_KEY = os.getenv("CHEMONDIS_WEATHER_KEY")
+WEATHER_KEY = os.getenv("WEATHER_KEY")
 
 CACHE_DURATION_IN_MINUTES = 5
