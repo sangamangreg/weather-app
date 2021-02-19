@@ -16,3 +16,13 @@ Design an application where use is able to check weather condition for any given
 - Create a .env file and add two lines in it
   -  SECRET_KEY={value}
   -  WEATHER_KEY={value}
+- Run below command
+  - `cd <project_root_directory>`
+  - `docker-compose up`
+  
+#### Note:
+    WEATHER_KEY can be obtained by signing up here `https://openweathermap.org/`
+
+## Available URL's to navigate
+- Home, [http:127.0.0.1:8000](http:127.0.0.1:8000)
+- Climate, [http:127.0.0.1:8000/climate](http:127.0.0.1:8000/climate) 

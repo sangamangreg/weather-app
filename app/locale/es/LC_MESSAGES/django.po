@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-19 20:33+0530\n"
+"POT-Creation-Date: 2021-02-20 00:17+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,50 +34,50 @@ msgstr "Española"
 msgid "Enter city"
 msgstr "entrar en la ciudad"
 
-#: app/weather/service.py:16
+#: app/weather/service.py:17
 msgid "North"
 msgstr "Norte"
 
-#: app/weather/service.py:16
+#: app/weather/service.py:17
 msgid "East"
 msgstr "Este"
 
-#: app/weather/service.py:16
+#: app/weather/service.py:17
 msgid "South"
 msgstr "Sur"
 
-#: app/weather/service.py:16
+#: app/weather/service.py:17
 msgid "West"
 msgstr "Oeste"
 
-#: app/weather/templates/weather/climate-city.html:11
+#: app/weather/templates/weather/climate-city.html:12
 #: app/weather/templates/weather/index.html:11
 msgid "Maximum Temperature"
 msgstr "Temperatura máxima"
 
-#: app/weather/templates/weather/climate-city.html:11
 #: app/weather/templates/weather/climate-city.html:12
+#: app/weather/templates/weather/climate-city.html:13
 #: app/weather/templates/weather/index.html:11
 #: app/weather/templates/weather/index.html:12
 msgid "C"
 msgstr "C"
 
-#: app/weather/templates/weather/climate-city.html:12
+#: app/weather/templates/weather/climate-city.html:13
 #: app/weather/templates/weather/index.html:12
 msgid "Minimum Temperature"
 msgstr "Temperatura mínima"
 
-#: app/weather/templates/weather/climate-city.html:16
+#: app/weather/templates/weather/climate-city.html:17
 #: app/weather/templates/weather/index.html:16
 msgid "Humidity"
 msgstr "Humedad"
 
-#: app/weather/templates/weather/climate-city.html:17
+#: app/weather/templates/weather/climate-city.html:18
 #: app/weather/templates/weather/index.html:17
 msgid "Pressure"
 msgstr "Presión"
 
-#: app/weather/templates/weather/climate-city.html:17
+#: app/weather/templates/weather/climate-city.html:18
 #: app/weather/templates/weather/index.html:17
 msgid "hPa"
 msgstr "hPa"
@@ -87,16 +87,16 @@ msgstr "hPa"
 msgid "Check"
 msgstr "Controlar"
 
-#: app/weather/views.py:23 app/weather/views.py:29 app/weather/views.py:62
-#: app/weather/views.py:71
+#: app/weather/views.py:30 app/weather/views.py:36 app/weather/views.py:70
+#: app/weather/views.py:79
 msgid "Please enter valid city name"
 msgstr "Ingrese un nombre de ciudad válido"
 
-#: app/weather/views.py:25 app/weather/views.py:65
+#: app/weather/views.py:32 app/weather/views.py:73
 msgid "System id down. Try in some time"
 msgstr "Identificación del sistema inactiva. Pruébalo en algún tiempo"
 
-#: app/weather/views.py:27 app/weather/views.py:68
+#: app/weather/views.py:34 app/weather/views.py:76
 msgid "Server taking too much time to respond. Try in some time"
 msgstr "El servidor tarda demasiado en responder. Pruébalo en algún tiempo"
 
