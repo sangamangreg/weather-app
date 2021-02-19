@@ -25,4 +25,7 @@ Design an application where use is able to check weather condition for any given
 
 ## Available URL's to navigate
 - Home, [http:127.0.0.1:8000](http:127.0.0.1:8000)
-- Climate, [http:127.0.0.1:8000/climate](http:127.0.0.1:8000/climate) 
+- Climate, [http:127.0.0.1:8000/climate](http:127.0.0.1:8000/climate)
+
+
+<img src="/app/static/images/English-Mumbai.png"> 
