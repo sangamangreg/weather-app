@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-
+from django.utils.translation import get_language_from_request
 from django.shortcuts import render
 from weather.service import OpenWeatherService
 from django.conf import settings
@@ -13,9 +13,11 @@ def index(request):
     if request.method == 'POST':
         form = CityForm( request.POST )
         if form.is_valid():
-            weather_service = OpenWeatherService(settings.CHEMONDIS_OPENWEATHER_URL, q=form.cleaned_data['city'], appid=settings.CHEMONDIS_OPENWEATHER_KEY, units="metric")
+            language = get_language_from_request(request)
+            weather_service = OpenWeatherService(settings.CHEMONDIS_OPENWEATHER_URL, q=form.cleaned_data['city'], appid=settings.CHEMONDIS_WEATHER_KEY, units="metric", lang=language)
             try:
                 weather_object = weather_service.get_data()
+                print(str(weather_object))
             except requests.exceptions.HTTPError as e:
                 form.add_error('city', 'Please enter valid city name')
             except requests.exceptions.ConnectionError as e:

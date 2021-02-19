@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'lm1i_o(+^_#y#k=7t%5o2&bm6jv1c5rw3#ngn*)gmo((s1=^r@'
+SECRET_KEY = os.getenv("CHEMONDIS_SECRET_KEY")
 
 DEBUG = True
 
@@ -27,8 +27,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -48,6 +48,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -88,13 +89,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Language codes can be found at https://github.com/django/django/blob/master/django/conf/global_settings.py
 LANGUAGES = (
-    ('en-us', _('English')),
+    ('en', _('English')),
     ('de', _('German')),
-    ('hi', _('Hindi')),
-    ('mr', _('Marathi')),
+    ('es', _('Spanish')),
 )
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -122,7 +122,6 @@ STATIC_URL = '/static/'
 
 CHEMONDIS_OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-#TODO: replace with env variables
-CHEMONDIS_OPENWEATHER_KEY = '525faa9391babe851442e665263c39a1'
+CHEMONDIS_WEATHER_KEY = os.getenv("CHEMONDIS_WEATHER_KEY")
 
 

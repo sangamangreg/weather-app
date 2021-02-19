@@ -9,5 +9,7 @@ services:
     volumes:
       - ./app:/app
       - ./app/static:/app/static
+    env_file: &global_env_file
+      - .env
     command: >
       sh -c "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"

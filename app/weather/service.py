@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.utils.translation import ugettext_lazy as _
 from abc import ABC, abstractmethod
 from urllib.parse import urlencode, quote_plus
 import requests
@@ -7,16 +8,14 @@ from http import HTTPStatus
 import datetime
 import logging
 
-from requests import HTTPError
 
 logger = logging.getLogger( __name__ )
 
-directions = ['North', 'East', 'South', 'West']
+directions = [_('North'), _('East'), _('South'), _('West')]
 
 
 class Weather( object ):
-    def __init__(self, name, temperature, min_temp, max_temp, humidity, pressure, wind_speed, direction, description,
-                 timezone):
+    def __init__(self, name, temperature, min_temp, max_temp, humidity, pressure, wind_speed, direction, description):
         self.name = name
         self.temperature = temperature
         self.min_temp = min_temp
@@ -27,7 +26,9 @@ class Weather( object ):
         self.description = description
         ix = round( direction / (360. / 4) )
         self.direction = directions[ix % 4]
-        self.time = datetime.datetime.fromtimestamp( timezone ).strftime( '%H:%M %p %d %b %Y' )
+
+    def __str__(self):
+        return "The city name is " + str(self.name) + " and temperature is " + str(self.temperature)
 
 
 class WeatherService( ABC ):
@@ -45,10 +46,11 @@ class WeatherService( ABC ):
         pass
 
 
-class OpenWeatherService( WeatherService ):
+class OpenWeatherService( WeatherService ): # retry mechanism
     def get_data(self):
-        logger.info( "information to fetch weather infomration for city" )
+        logger.info( "Information to fetch weather infomration for city" )
         try:
+            print(self.api_url)
             response = requests.get( self.api_url, timeout=3 )
             logger.info( "Information collected successfully" )
             if response.status_code == HTTPStatus.OK:
@@ -78,7 +80,6 @@ class OpenWeatherService( WeatherService ):
             humidity=data['main']['humidity'],
             pressure=data['main']['pressure'],
             wind_speed=data['wind']['speed'],
-            direction=data['wind']['speed'],
-            description=data['weather'][0]['main'],
-            timezone=data['dt'] + data['timezone']
+            direction=data['wind']['deg'],
+            description=data['weather'][0]['description']
         )
