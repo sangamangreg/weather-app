@@ -28,4 +28,6 @@ Design an application where use is able to check weather condition for any given
 - Climate, [http:127.0.0.1:8000/climate](http:127.0.0.1:8000/climate)
 
 
-<img src="/app/static/images/English-Mumbai.png"> 
+<img src="/app/static/images/English-Mumbai.png">
+<img src="/app/static/images/German-Berlin.png">
+<img src="/app/static/images/Spanish-Berlin.png"> 
