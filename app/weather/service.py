@@ -8,6 +8,8 @@ import json
 from http import HTTPStatus
 import logging
 import requests_cache
+from aiohttp import ClientSession, ClientTimeout, ClientError
+
 
 requests_cache.install_cache('open_api_cache', expire_after=60 * settings.CACHE_DURATION_IN_MINUTES)
 
@@ -75,6 +77,32 @@ class OpenWeatherService( WeatherService ): # retry mechanism
             raise
 
     def decoder_hook(self, data):
+        return Weather(
+            name=data['name'],
+            temperature=data['main']['temp'],
+            min_temp=data['main']['temp_min'],
+            max_temp=data['main']['temp_max'],
+            humidity=data['main']['humidity'],
+            pressure=data['main']['pressure'],
+            wind_speed=data['wind']['speed'],
+            direction=data['wind']['deg'],
+            description=data['weather'][0]['description']
+        )
+
+    async def get_async_data(self):
+        session_timeout = ClientTimeout( total=None, sock_connect=30, sock_read=30 )
+        async with ClientSession( timeout=session_timeout ) as session:
+            async with session.get( self.api_url, allow_redirects=False, timeout=1 ) as response:
+                response = await response.read()
+                response = json.loads(response)
+                if response['cod'] != "404":
+                    weather_object = await self.decoder_hook_async(  response  )
+                    return weather_object
+                else:
+                    logger.warning("No infomration found on city")
+                    return None
+
+    async def decoder_hook_async(self, data):
         return Weather(
             name=data['name'],
             temperature=data['main']['temp'],

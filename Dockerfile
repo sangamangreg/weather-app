@@ -5,6 +5,7 @@ MAINTAINER Sangam Angre
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
+RUN apk --no-cache add gcc musl-dev
 RUN pip install -r /requirements.txt
 
 RUN mkdir /app

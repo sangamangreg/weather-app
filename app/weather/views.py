@@ -10,6 +10,7 @@ from weather.forms import CityForm
 import requests
 import logging
 from django.utils.translation import ugettext_lazy as _
+import asyncio
 
 logger = logging.getLogger( __name__ )
 
@@ -64,21 +65,14 @@ def climate_for_city(request, city):
     language = get_language_from_request( request )
     weather_service = OpenWeatherService( settings.OPENWEATHER_URL, q=city,
                                           appid=settings.WEATHER_KEY, units="metric", lang=language )
-    try:
-        weather_object = weather_service.get_data()
-    except requests.exceptions.HTTPError as e:
-        messages.error( request, _( 'Please enter valid city name' ) )
-        return redirect( climate )
-    except requests.exceptions.ConnectionError as e:
-        messages.error( request, _( 'System id down. Try in some time' ) )
-        return redirect( climate )
-    except requests.exceptions.Timeout as e:
-        messages.error( request, _( 'Server taking too much time to respond. Try in some time' ) )
-        return redirect( climate )
-    except requests.exceptions.RequestException as e:
-        messages.error( request, _( 'Please enter valid city name' ) )
-        return redirect( climate )
 
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop( loop )
+    weather_object = loop.run_until_complete( weather_service.get_async_data() )
+    if not weather_object:
+        messages.error( request, _( 'Please enter valid city name' ) )
+        return redirect( climate )
     args = {
         "weather_object": weather_object
     }

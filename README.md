@@ -16,6 +16,7 @@
   -  WEATHER_KEY={value}
 - Run below command
   - `cd <project_root_directory>`
+  - `docker-compose build`
   - `docker-compose up`
   
 #### Note:
