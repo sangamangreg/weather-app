@@ -1,6 +1,6 @@
 # Weather App
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KsXh8hzP1ik" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Working Demo](https://img.youtube.com/vi/KsXh8hzP1ik/0.jpg)](https://www.youtube.com/watch?v=KsXh8hzP1ik "CTRL+click to open in new tab")
 
 ## Application demonstrates to use
 - Open Weather API `https://openweathermap.org/`
